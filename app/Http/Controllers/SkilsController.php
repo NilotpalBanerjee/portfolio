@@ -60,6 +60,7 @@ class SkilsController extends Controller
 
 
     public function skils_remove(Request $request){
+
         $remove_id = $request->input('custom_id');
         $mode = $request->input('mode');
         if ($mode === 'remove_skils' && $remove_id) {
@@ -69,6 +70,9 @@ class SkilsController extends Controller
         return back()->withSuccess('Skill remove successfully');
 
     }
-
+    public function show(){
+        $skills = Skils::where('status', 'active')->get();
+        return view('frontend.pages.index',['skills' => $skills]);
+    }
     
 }

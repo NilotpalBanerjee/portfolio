@@ -38,5 +38,5 @@ Route::group(['middleware'=>['admin_auth']],function(){
 
 });
 
-
+Route::get('/', [SkilsController::class,'show'])->name('skill');
 
