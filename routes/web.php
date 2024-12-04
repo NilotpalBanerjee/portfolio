@@ -22,7 +22,7 @@ Route::get('/', function () {
     return view('frontend.pages.index');
 });
 
-Route::get('/admin/login', [AuthController::class,'getLogin'])->name('getLogin');
+Route::get('/admin', [AuthController::class,'getLogin'])->name('getLogin');
 Route::post('/admin/login', [AuthController::class,'postLogin'])->name('postLogin');
 
 Route::group(['middleware'=>['admin_auth']],function(){
@@ -30,14 +30,13 @@ Route::group(['middleware'=>['admin_auth']],function(){
     Route::get('/admin/dashboard',[ProfileController::class,'dashboard'])->name('dashboard');
     Route::get('/admin/logout',[AuthController::class,'logout'])->name('logout');
 
-    Route::get('/admin/skils', [SkilsController::class,'index'])->name('skils');
-    Route::get('/admin/skils-add', [SkilsController::class,'add'])->name('add-skils');
-    Route::post('/admin/skils-store', [SkilsController::class,'store'])->name('store-skils');
-    Route::get('/admin/{id}/skils-edit', [SkilsController::class,'edit'])->name('edit-skils');
-    Route::put('/admin/{id}/skils-update', [SkilsController::class,'update'])->name('update-skils');
-    Route::get('/admin/{id}/skils-delete', [SkilsController::class,'delete'])->name('delete-skils');
+    Route::get('/admin/skils-view', [SkilsController::class,'skils_view'])->name('skils');
+    Route::get('/admin/skils-master', [SkilsController::class, 'skils_master'])->name('skils-master');
+    Route::post('/admin/skils-master', [SkilsController::class, 'skils_master'])->name('skils-master');
+    Route::post('/admin/skils-create-update', [SkilsController::class,'create_update'])->name('create-update');
+    Route::post('/admin/skils-remove', [SkilsController::class,'skils_remove'])->name('remove-skils');
 
 });
 
-Route::get('/', [SkilsController::class,'show'])->name('skill');
+
 

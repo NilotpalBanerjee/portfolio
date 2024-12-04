@@ -6,12 +6,11 @@
 
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Skils</h1>
-
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header">
             <span class="font-weight-bold text-primary">All Skils</span>
-            <a href="/admin/skils-add" class="btn btn-success float-right">Add <i class="fa fa-plus" aria-hidden="true"></i></a>
+            <a href="/admin/skils-master" class="btn btn-success float-right">Add <i class="fa fa-plus" aria-hidden="true"></i></a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -39,9 +38,9 @@
                             <td>{{ $sk->name }}</td>
                             <!-- <td>{{ $sk->description }}</td> -->
                             <td class="text-center">
-                                <a href="/admin/{{ $sk->id }}/skils-edit" class="btn btn-warning"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                                <a href="javascript:void(0)" onclick="edit_skils('{{ $sk->id }}')" class="btn btn-warning"><i class="fa fa-edit" aria-hidden="true"></i></a>
                                 <span>&nbsp;&nbsp;&nbsp;</span>
-                                <a href="/admin/{{ $sk->id }}/skils-delete" class="btn btn-danger" id="skils"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                <a href="javascript:void(0)" onclick="remove_skils('{{ $sk->id }}')" class="btn btn-danger" id="skils"><i class="fa fa-trash" aria-hidden="true"></i></a>
                             </td>
                         </tr>
                         @endforeach
@@ -52,14 +51,30 @@
     </div>
 </div>
 <script>
+    
     $(document).ready(function() {
-        $('#skils').on('click', function(event) {
-            event.preventDefault();
-            if (confirm("Are you sure you want to delete this item?")) {
-                window.location.href = $(this).attr('href');
-            }
-        });
+        @if(Session::has('success'))
+            alert('{{ Session::get('success') }}');
+        @endif
     });
+
+    function edit_skils(id) {
+        document.getElementById('custom_id').value = id;
+        document.getElementById('mode').value = 'edit_skils';
+        document.getElementById('custom_form').action = '/admin/skils-master';
+        document.getElementById('custom_form').submit();
+    };
+    function remove_skils(id) {
+        if (confirm("Are you sure you want to remove this skill?")) {
+            document.getElementById('custom_id').value = id;
+            document.getElementById('mode').value = 'remove_skils';
+            document.getElementById('custom_form').action = '/admin/skils-remove';
+            document.getElementById('custom_form').submit();
+        } else {
+            return false;
+        }
+    }
+
 </script>
 
 <!-- /.container-fluid -->

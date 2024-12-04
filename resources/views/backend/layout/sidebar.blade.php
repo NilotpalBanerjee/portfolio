@@ -36,8 +36,8 @@
     </a>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="/admin/skils">All skils</a>
-            <a class="collapse-item" href="/admin/skils-add">Add Skils</a>
+            <a class="collapse-item" href="/admin/skils-view">All skils</a>
+            <a class="collapse-item" href="/admin/skils-master">Add Skils</a>
         </div>
     </div>
 </li>

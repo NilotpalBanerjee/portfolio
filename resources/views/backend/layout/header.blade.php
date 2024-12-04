@@ -61,3 +61,9 @@
 
 </nav>
 <!-- End of Topbar -->
+<form id="custom_form" method="post">
+    <input type="hidden" name="custom_id" id="custom_id" value="">
+    <input type="hidden" name="mode" id="mode" value="">
+    <input type="hidden" name="ext_flag" id="ext_flag" value="">
+    <input type="hidden" name="_token" id="csrf_token" value="{{ csrf_token() }}">
+</form>
